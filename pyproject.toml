@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "Python Deploy Django demo"
+version = "1.0.0"
+description = "A Django app ready to be deployed with pythondeploy.co"
+authors = ["Federico Jaramillo Martínez <federicojaramillom@gmail.com>"]
+license = "Unlicense"
+
+[tool.poetry.dependencies]
+python = ">=3.7"
+django = ">=3.1"
+dj-database-url = ">=0.5.0"
+psycopg2-binary = ">=2.8.6"
+django-storages = {extras = ["boto3"], version = ">=1.11.0"}
+pd-aws-lambda = ">=1.0.0"
+Collectfast = "^2.2.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
