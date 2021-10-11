@@ -13,6 +13,7 @@ psycopg2-binary = ">=2.8.6"
 django-storages = {extras = ["boto3"], version = ">=1.11.0"}
 pd-aws-lambda = ">=1.0.0"
 Collectfast = "^2.2.0"
+awslambdaric = "^1.2.2"
 
 [tool.poetry.dev-dependencies]
 
