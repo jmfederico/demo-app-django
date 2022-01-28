@@ -26,7 +26,7 @@ COPY . .
 # Select the base image to use.
 FROM base as fargate
 
-CMD [ "gunicorn", "pd_django_demo.wsgi", "-b", "0.0.0.0:80" ]
+CMD [ "gunicorn", "--capture-output", "pd_django_demo.wsgi", "-b", "0.0.0.0:80" ]
 
 
 # Select the base image to use.
