@@ -21,9 +21,6 @@ jobs:
       PD_APP_ID: ${{ secrets.PD_APP_ID }}
     steps:
       - uses: actions/checkout@v2
-      # We need a requirements.txt file for the dependencies.
-      # This step is not required if you have a requirements.txt file already.
-      - run: pipx run poetry export -f requirements.txt -o requirements.txt --without-hashes
 
       # Install the python-deploy cli
       - run: pipx install "pd_cli~=1.0"
@@ -31,8 +28,4 @@ jobs:
       # Build the docker image
       - run: python-deploy build python-deploy:release
       # Deploy the docker image
-      - run: python-deploy deploy python-deploy:release --wait
-      # Run post deploy tasks
-      - run: python-deploy run -- python3 manage.py migrate
-      - run: python-deploy run -- python3 manage.py createcachetable
-      - run: python-deploy run -- python3 manage.py collectstatic --noinput
+      - run: python-deploy deploy python-deploy:release
