@@ -33,7 +33,7 @@ def tasks_view(request: HttpRequest):
     return HttpResponse(
         render_to_string(
             "tasks/tasks.html",
-            {"tasks": Task.objects.all()},
+            {"tasks": Task.objects.order_by("-created_at").all()},
             request,
         )
     )
