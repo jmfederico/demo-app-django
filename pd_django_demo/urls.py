@@ -6,6 +6,7 @@ For more information please see:
 """
 
 from django.contrib import admin
+from django.http import HttpResponse
 from django.urls import path
 
 from tasks.views import tasks_view
@@ -13,4 +14,5 @@ from tasks.views import tasks_view
 urlpatterns = [
     path("", tasks_view),
     path("admin/", admin.site.urls),
+    path("health/", lambda request: HttpResponse()),
 ]
