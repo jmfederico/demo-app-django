@@ -1,9 +1,10 @@
-# Select the base image to use.
-FROM python:3.8 as base
+FROM python:3.8-slim as base
 
 ENV PYTHONUNBUFFERED=1
 
-RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+ADD https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py /poetry/
+RUN python /poetry/get-poetry.py
+
 ENV PATH="/root/.poetry/bin:${PATH}"
 RUN poetry config virtualenvs.create false
 
@@ -25,13 +26,18 @@ ENTRYPOINT [ "pd_entrypoint" ]
 # Copy function code
 COPY . .
 
-# Select the base image to use.
+CMD [ "python", "manage.py", "runserver", "0.0.0.0:80" ]
+
+
+# Fargate compatible image.
+# Use gunicorn to handle requests.
 FROM base as fargate
 
 CMD [ "gunicorn", "--capture-output", "--access-logfile", "-", "pd_django_demo.wsgi", "-b", "0.0.0.0:80" ]
 
 
-# Select the base image to use.
+# Fargate compatible image.
+# Use awslambdaric to handle lambda requests.
 FROM base as lambda
 
 # Important!
