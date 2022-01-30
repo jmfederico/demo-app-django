@@ -142,6 +142,7 @@ DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 STATICFILES_STORAGE = "storages.backends.s3boto3.S3StaticStorage"
 AWS_QUERYSTRING_AUTH = False
 AWS_STORAGE_BUCKET_NAME = os.environ["PD_S3_BUCKET_PUBLIC"]
+AWS_S3_ENDPOINT_URL = os.environ.get("PD_S3_ENDPOINT_URL")
 AWS_LOCATION = "staticfiles"
 
 

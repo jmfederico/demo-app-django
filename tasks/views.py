@@ -1,3 +1,4 @@
+import os
 from uuid import uuid4
 
 import boto3
@@ -9,7 +10,7 @@ from django.views.decorators.csrf import csrf_protect
 
 from .models import Task
 
-client = boto3.client("sqs")
+client = boto3.client("sqs", endpoint_url=os.environ.get("BOTO_ENDPOINT_URL"))
 
 
 @csrf_protect

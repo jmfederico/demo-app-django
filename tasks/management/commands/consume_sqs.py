@@ -1,3 +1,4 @@
+import os
 import sys
 from time import sleep
 
@@ -7,7 +8,7 @@ from django.core.management.base import BaseCommand
 
 from tasks.sqs import task_sqs_handler
 
-client = boto3.client("sqs")
+client = boto3.client("sqs", endpoint_url=os.environ.get("BOTO_ENDPOINT_URL"))
 
 
 class Command(BaseCommand):

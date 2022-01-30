@@ -1,9 +1,9 @@
 from uuid import UUID
 
-import boto3
+from .helpers import complete_task
+
 
 def task_lambda_sqs_event_handler(event, context):
-    from .helpers import complete_task
 
     for record in event["Records"]:
         task_uuid = record["body"]
@@ -16,7 +16,6 @@ def task_lambda_sqs_event_handler(event, context):
 
 
 def task_sqs_handler(message):
-    from .helpers import complete_task
 
     task_uuid = message["Body"]
     try:
